@@ -199,7 +199,7 @@ radius=int(box_size/2 - 5)
 screen=pygame.display.set_mode(size)
 darw_UI_board(b)
 pygame.display.update()
-myfont = pygame.font.SysFont("monospace",60)
+#myfont = pygame.font.SysFont("monospace",60)
 turn=random.randint(human,AI)
 while not game_over:
 
@@ -224,8 +224,8 @@ while not game_over:
                     ball_placement(b, row, column, human_ball)
 
                     if check_win(b, human_ball):
-                       label = myfont.render("PLAYER 1 WINSS!!!",1,red)
-                       screen.blit(label,(40,10))
+                       import streamlit as st
+                       st.success("🏆 PLAYER 1 WINS!!!")
                        game_over = True
 
                     turn += 1
@@ -243,9 +243,10 @@ while not game_over:
             pygame.time.wait(500)
             row = check_row(b, column)
             ball_placement(b, row, column, AI_ball)
+            
             if check_win(b, AI_ball):
-                label = myfont.render("PLAYER 2 WINSS!!!", 2, yellow)
-                screen.blit(label, (40, 10))
+                import streamlit as st
+                st.error("🤖 AI WINS!!!")
                 game_over = True
 
             flip_board(b)
